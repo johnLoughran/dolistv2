@@ -1,0 +1,75 @@
+<!-- Code from Irish Web Servers for a Form
+please read the comments as they will help you setup this to work, for more information please visit
+http://www.scriptarchive.com/readme/formmail.html  -->
+
+<form ACTION="http://irishwebservers.ie/cgi-sys/FormMail.cgi" METHOD="post">
+<!-- you need to replace the above "irishwebservers.ie" with your domain name -->
+<div align="center">
+    <table border="0" cellpadding="0" width="70%">
+        <tr>
+            <td>Field</td>
+            <td><input TYPE="TEXT" NAME="FieldOne" size="20"></td>
+        </tr>
+        <tr>
+            <td>Field</td>
+            <td><input TYPE="TEXT" NAME="FieldTwo" size="20"></td>
+        </tr>
+        <tr>
+            <td>Your Email:</td>
+            <td><input TYPE="TEXT" NAME="Email" size="20"></td>
+        </tr>
+        <tr>
+            <td>Select Option:</td>
+            <td>
+            <select NAME="SelectOption">
+                <option SELECTED>Please Choose</option>
+                <option VALUE></option>
+                <option VALUE="item1">item1</option>
+                <option VALUE="item2">item2</option>
+                <option VALUE="item3">item3</option>
+                <option VALUE="item4">item4</option>
+                <option VALUE="item5">item5</option>
+                <option VALUE="item6">item6</option>
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Field 4:</td>
+            <td><textarea ROWS="6" NAME="FieldFour" cols="20"></textarea></td>
+        </tr>
+        <tr>
+            <td>Select Y/N:</td>
+            <td>Yes: <input TYPE="radio" CHECKED NAME="SelectY/N" VALUE="Yes">&nbsp;&nbsp;&nbsp;No:<input TYPE="radio" NAME="SelectY/N" VALUE="No"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><textarea ROWS="6" NAME="FieldFive" cols="20"></textarea></td>
+        </tr>
+        <tr>
+            <td>Field 6:</td>
+            <td><input TYPE="TEXT" NAME="FieldSix" size="20"></td>
+        </tr>
+        <tr>
+            <td>
+            <input TYPE="hidden" NAME="subject" VALUE="Your Subject">
+            <!-- change Your Subject with the subject you wish your email to have-->
+
+            <input TYPE="hidden" NAME="recipient" VALUE="username@yourdomain.com ">
+            <!-- change username@yourdomain.com to the email address to send the mail to -->
+
+            <input TYPE="hidden" NAME="redirect" VALUE="http://www.yourdomain.com/">
+            <!-- this is the page to be seen after they have submitted the form -->
+
+            <input TYPE="hidden" NAME="env_report" VALUE="REMOTE_HOST,HTTP_USER_AGENT,REMOTE_ADDR">
+            <!-- will show details about the person submitting the form including there IP-->
+
+            <input type="hidden" NAME="email" VALUE="user@domain.com">
+            <!-- this is the email address the email will come from,  you can set this as a input box as above so the user can put there own in -->
+            </td>
+            <td><br><input TYPE="submit" ></td>
+        </tr>
+    </table>
+</div>
+</form>
+
+2021-01-12 10:21:00.710572 [INFO] [3014] [162.243.114.156:55516#APVH_skerrieschess.com] File not found [/home/skerries/public_html/404.shtml]
