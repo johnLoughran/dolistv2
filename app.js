@@ -35,7 +35,7 @@ const itemsSchema = {
     type: String,
     required: true
   }
-}; 
+};
 
 const Item = new mongoose.model("Item", itemsSchema);
 
@@ -172,8 +172,12 @@ app.get(iwsDirPath + "about", function(req, res){
   res.render("about");
 })
 
-app.listen(3000, function(req, res){
-  console.log("Server started: 3000");
+// var port = process.env.PORT;
+// if (port == "null" || port == ""){
+//   port = 3000;
+// }
+app.listen(process.env.PORT || 3000, function(req, res){
+  console.log("Server started remotely or on port 3000");
 })
 
 
