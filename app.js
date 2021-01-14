@@ -19,9 +19,9 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 // completes the path from /home/skerries to the app dir on irish web server hosting
-const iwsDirPath = "/apps/dolistv2/"; // on iws server
-// can test locally at localhost:3000/apps/dolistv2/ or same/work in browser
-// const iwsDirPath = "/"; // for local development
+// const iwsDirPath = "/apps/dolistv2/"; // on iws server
+// can test locally at localhost:3000/apps/dolistv2/ or .../work in browser
+const iwsDirPath = "/"; // for local development
 
 const workTitle = "Work To Do List";
 
