@@ -6,6 +6,9 @@
 // $ mongo "mongodb+srv://cluster0.97bh1.mongodb.net/<dbname>" --username johnLoughran
 // <dbname> is dolistv2DB, pwd is joxF3h6ovuBcvmYp
 
+// Issue: sometimes add item to list is slower than render page so needs refresh,
+// even running on localhost
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -19,9 +22,9 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 // completes the path from /home/skerries to the app dir on irish web server hosting
-// const iwsDirPath = "/apps/dolistv2/"; // on iws server
+const iwsDirPath = "/apps/dolistv2/"; // on iws server
 // can test locally at localhost:3000/apps/dolistv2/ or .../work in browser
-const iwsDirPath = "/"; // for local development
+//const iwsDirPath = "/"; // for local development
 
 const workTitle = "Work To Do List";
 
@@ -112,23 +115,18 @@ app.post(iwsDirPath, function(req, res){
 app.get(iwsDirPath + ":customListName", function(req, res){
   const customListName = _.startCase(_.lowerCase(req.params.customListName));
   console.log("Serving custom route using route parameter: " + customListName);
-
+  // causing a timeout error on heroku
   DoList.findOne({doListName: customListName}, function(err, theDoList){
     if (err){
       console.log(err);
     } else {
       if (!theDoList) {
-        const aDoList = new DoList({
-          doListName: customListName,
-          doList: defaultItems
-        });
+        const aDoList = new DoList({doListName: customListName, doList: defaultItems});
         aDoList.save();
-
         res.redirect(iwsDirPath + customListName);
       }
       else {
         res.render("list", {listTitle: theDoList.doListName, newListItems: theDoList.doList, IWSDirPath: iwsDirPath });
-        //res.render("/", {listTitle: customListName, newListItems: theDoList.doList });
       }
     }
   });
@@ -184,3 +182,10 @@ app.listen(process.env.PORT || 3000, function(req, res){
 // *********************************************************
 // const items = ["Buy food", "Cook food", "Eat food"];
 // const workItems = [];
+
+
+// still-cliffs-60127.herokuapp.com
+// IP Address: 34.234.209.13
+// I had to allow access from any IP address in Mongo Atlas, then took 30 mins to allow, thn app range
+
+// skerrieschess.com IP: 217.115.114.212
